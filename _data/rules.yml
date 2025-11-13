@@ -3189,10 +3189,11 @@ groups:
             slug: metric-plugin
             doc_url: https://plugins.jenkins.io/prometheus/
             rules:
-              - name: Jenkins offline
-                description: "Jenkins offline: `{{$labels.instance}}` in realm {{$labels.realm}}/{{$labels.env}} ({{$labels.region}})"
+              - name: Jenkins node offline
+                description: "Jenkins node offline: `{{$labels.instance}}` in realm {{$labels.realm}}/{{$labels.env}} ({{$labels.region}})"
                 query: "jenkins_node_offline_value > 1"
                 severity: critical
+                for: 1m
               - name: Jenkins healthcheck
                 description: "Jenkins healthcheck score: {{$value}}. Healthcheck failure for `{{$labels.instance}}` in realm {{$labels.realm}}/{{$labels.env}} ({{$labels.region}})"
                 query: "jenkins_health_check_score < 1"
